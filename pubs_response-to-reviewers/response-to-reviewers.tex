@@ -1,0 +1,259 @@
+
+% =================================================================================
+% RESPONSE TO REVIEWERS
+% Author: Jack Davison
+% Uses ES&T Style, but can be used for whatever journal you want. Important parts
+% to customise are CUSTOM COMMANDS (where you can define e.g. new chemical species
+% or units unique to your work) and, importantly, DEFINE VARIABLES, where you should
+% specify things like the journal, your name, the editor's name, etc.
+% In an update to previous versions, there is now only one, multi-purpose response
+% function.
+% =================================================================================
+
+% =================================================================================
+% PACKAGES
+% =================================================================================
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage[document]{ragged2e}
+\usepackage{enumitem}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage[version=4]{mhchem}
+\usepackage{xparse}% http://ctan.org/pkg/xparse
+\usepackage{ifmtarg}% http://ctan.org/pkg/ifmtarg
+
+% =================================================================================
+% DEFINE VARIABLES (to be changed)
+% =================================================================================
+
+% please change these to appropriate names
+
+\newcommand{\addresseename}{Dr. E. Ditor}       % the editors name
+\newcommand{\addresseetitle}{Editor-in-Chief}   % editors title, e.g., Associate Editor
+\newcommand{\journal}{Journal~of~Science}       % journal name
+\newcommand{\paperid}{JS-2021-XXXXXV}           % Unique ID for the paper
+\newcommand{\letterwriter}{Dr. A.u.thor}        % Person writing, e.g., Mr Jack Davison
+\newcommand{\attached}{Response to Reviewers; `Clean' Updated Manuscript; `Tracked Changes' Updated Manuscript} % things "attached" to the letter
+\newcommand{\quotecolor}{blue}                  % colour for quotes to be in. e.g., ES&T like blue.
+\newcommand{\linkcolor}{gray}                   % colour for links to be in.
+
+% =================================================================================
+% BIBLIOGRAPHY
+% =================================================================================
+
+\usepackage[
+  backend = biber, 
+  natbib = true,
+  style = numeric-comp,
+  sorting = none,
+  url = true,
+  isbn = false,
+  uniquename = false,
+  maxcitenames = 2,
+  maxbibnames = 99,
+  date = year,
+  giveninits = true
+]{biblatex}
+
+\addbibresource{refs.bib}
+
+% =================================================================================
+% DOCUMENT SET-UP
+% =================================================================================
+
+% Page geometry
+\geometry{a4paper, margin=1in}
+
+% Add page numbers
+\pagestyle{fancy}
+\fancyhf{} \renewcommand{\headrulewidth}{0pt}
+\rfoot{\textit{\textcolor{gray}{\thepage/\pageref{LastPage}}}}
+
+% Hyperlink appearance
+\hypersetup{
+  colorlinks = true,
+  urlcolor = \linkcolor, 
+  citecolor = \linkcolor, 
+  linkcolor = \linkcolor
+}
+
+% =================================================================================
+% CUSTOM COMMANDS (can be changed)
+% =================================================================================
+
+% Add whatever is appropriate for your response (e.g., new chemical species)
+
+% Chemical Species
+\newcommand*{\notwo}{\ce{NO2}\xspace}
+\newcommand*{\nox}{\ce{NO_x}\xspace}
+\newcommand*{\ozone}{\ce{O3}\xspace}
+\newcommand*{\cotwo}{\ce{CO2}\xspace}
+\newcommand*{\ammonia}{\ce{NH3}\xspace}
+\newcommand*{\pmx}[1]{PM$_{#1}$\xspace}
+
+% Units
+\newcommand*{\degreesc}{$\rm \, ^\circ \, C$\xspace}
+\newcommand*{\gkg}{$\rm g \, kg ^{-1}$\xspace}
+\newcommand*{\kmh}{$\rm km \, h ^{-1}$\xspace}
+\newcommand*{\kwt}{kW~t$^{-1}$\xspace}
+\newcommand*{\gkgper}[1]{\gkg\xspace{#1} per $10^4$ km driven}
+
+% =================================================================================
+% LETTER COMMANDS (to be left alone)
+% =================================================================================
+
+%% Letter Formatting Commands %%
+
+% Does all the "header" bits - your name and addr., their name and addr., etc.
+\newcommand{\makereviewerhead}{
+    % author's info
+    \begin{flushright}
+        \textbf{\letterwriter}\newline
+        \emph{Wolfson Atmospheric Chemistry Laboratories\newline 
+        Innovation Way, University of York\newline
+        York, YO10 5DD, UK}\newline
+        \bigskip
+        \today
+    \end{flushright}
+    
+    % editor's info
+    \begin{flushleft}
+        \textbf{FAO: \addresseename}\newline
+        \addresseetitle\newline
+        \journal
+    \end{flushleft}
+    
+    % "Dear such and such" etc.
+    \bigskip
+    \bigskip
+    Dear \addresseename,\newline
+    \bigskip
+    \textbf{RE: \paperid}
+
+}
+
+% Does all the "tail" bits - "Best wishes, David, attached is..." etc.
+\newcommand{\makereviewertail}{
+    \bigskip\bigskip\RaggedRight
+    \noindent Kind regards,\newline
+    \bigskip
+    \noindent\textbf{\letterwriter}\\~\\
+    \small
+    \noindent\textit{\textcolor{gray}{Attached: \attached}}
+    \normalsize
+}
+
+%% RESPONSE COMMANDS %%
+
+% Need indented paragraph environment
+\newenvironment{myindentpar}[1]%
+  {\begin{list}{}%
+          {\setlength{\leftmargin}{#1}}%
+          \item[]%
+  }
+  {\end{list}}
+
+% response allows for you to respond to reviewers comments, like this:
+%       response[Line X]{Reviewer's Comment}{Your Reply}[Quote][Quote2]
+% all of the options are, naturally, optional. The only required field is the reviewer's response.
+
+\makeatletter
+\DeclareDocumentCommand{\response}{ o m m o o }{%
+        \IfNoValueTF{#1}%
+            {}%
+            {\@ifmtarg{#1}{\textit{#2}}{#1: \textit{#2}}}%
+        \begin{myindentpar}{1cm}#3\end{myindentpar}%
+        \IfNoValueTF{#4}%
+            {}%
+            {\@ifmtarg{#4}{}{\begin{myindentpar}{1cm}\textcolor{\quotecolor}{``#4\xspace''}\end{myindentpar}}}%
+        \IfNoValueTF{#5}%
+            {}%
+            {\@ifmtarg{#5}{}{\begin{myindentpar}{1cm}\textcolor{\quotecolor}{``#5\xspace''}\end{myindentpar}}}%
+}
+\makeatother
+
+
+
+% =================================================================================
+% LETTER TO THE EDITOR
+% =================================================================================
+
+% begin document
+\begin{document}
+
+% does everything till you have to actually start writing
+\makereviewerhead
+
+% looks better justified
+\bigskip
+We would like to thank the reviewer for their second set of comments on our manuscript. We have undertaken the minor corrections recommended, which we have outlined below.
+
+\bigskip
+\noindent Please find below point-by-point responses to the reviewers’ comments. As requested, you will find the exact comment from each reviewer in black italicised type followed by our response indented. Our response to the reviewer is in black type, and any changes to the text in \quotecolor. The line references for these quotations are those quoted by the reviewers and therefore those of the original manuscript. 
+
+\bigskip
+\noindent We hope that you now find our responses satisfactory and the manuscript now ready for publication.
+
+% Does the tail end of a letter (from X, enclosed is y)
+\makereviewertail
+
+\newpage
+
+% =================================================================================
+% BEGIN REVIEWER responseS
+% =================================================================================
+
+\section*{Reviewer 1}
+
+We thank the reviewer\dots
+
+\begin{enumerate}[label=1.\arabic*]
+
+    % Reviewer is making a general comment, with a general response.
+    \item \response[]{Define the acronym HBEFA.}{HBEFA has been defined in the Introduction.}
+    
+    % Reviewer is referring to Line 20 specifically.
+    \item \response[Line 20]{This is okay but you need to reference more of my papers.}{Fair enough, here is a reference \citep{Lewis2015}.}
+    
+\end{enumerate}
+
+%\newpage
+
+\section*{Reviewer 2}
+
+We thank the reviewer\dots
+
+\begin{enumerate}[label=2.\arabic*]
+
+    % here we give a quote, and also label this response
+    \item \response[Line 40]{This is a nice point, but it needs some elaboration.}{Thank you, we've elaborated a bit more.}[The symbol \nox stands for the oxides of nitrogen, those being NO and NO$_2$.]\label{resp:nox}
+    
+\end{enumerate}
+
+%\newpage
+
+\section*{Reviewer 3}
+
+We thank the reviewer\dots
+
+\begin{enumerate}[label=3.\arabic*]
+
+    % Here we refer back to another response
+    \item \response[Line 40]{I'm not sure what this means.}{Addressed as part of Response \ref{resp:nox}.}
+    
+\end{enumerate}
+
+% =================================================================================
+% BIBLIOGRAPHY
+% =================================================================================
+
+\section*{Bibliography}
+\printbibliography[heading = none]
+
+\end{document}

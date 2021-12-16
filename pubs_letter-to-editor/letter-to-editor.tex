@@ -1,0 +1,110 @@
+% =================================================================================
+% LETTER TO EDITOR
+% Author: Jack Davison
+% Just a letter to the editor to use as a cover letter.
+% =================================================================================
+
+% =================================================================================
+% PACKAGES
+% =================================================================================
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{xspace}
+\usepackage[document]{ragged2e}
+\usepackage{chemformula}
+\usepackage{lipsum}
+
+\geometry{a4paper, margin=1in}
+\thispagestyle{empty}
+
+% =================================================================================
+% DEFINE VARIABLES (to be changed)
+% =================================================================================
+
+\newcommand{\addresseeName}{Dr. E. Ditor}
+\newcommand{\addresseeTitle}{Editor-in-Chief}
+\newcommand{\journal}{Journal~of~Science}
+\newcommand{\letterWriter}{Dr. A.u.thor}
+\newcommand{\paperTitle}{My paper title}
+\newcommand{\attached}{Manuscript \& Supporting Information for `\paperTitle'}
+
+% =================================================================================
+% CUSTOM COMMANDS (can be changed)
+% =================================================================================
+
+\newcommand*{\nox}{\ch{NO_x}\xspace}
+\newcommand*{\gkg}{$\rm g \, kg ^{-1}$\xspace}
+
+% =================================================================================
+% LETTER COMMANDS (to be left alone)
+% =================================================================================
+
+%% Letter Formatting Commands %%
+
+% Does all the "header" bits - your name and addr., their name and addr., etc.
+\newcommand{\MakeLteHead}{
+    % author's info
+    \begin{flushright}
+        \textbf{\letterWriter}\newline
+        \emph{Wolfson Atmospheric Chemistry Laboratories\newline 
+        Innovation Way, University of York\newline
+        York, YO10 5DD, UK}\newline
+        \bigskip
+        \today
+    \end{flushright}
+    
+    % editor's info
+    \begin{flushleft}
+        \textbf{FAO: \addresseeName}\newline
+        \addresseeTitle\newline
+        \journal
+    \end{flushleft}
+    
+    % "Dear such and such" etc.
+    \bigskip
+    \bigskip
+    Dear \addresseeName,\newline
+
+}
+
+% Does all the "tail" bits - "Best wishes, attached is..." etc.
+\newcommand{\MakeLteTail}{
+    \bigskip\RaggedRight
+    \noindent Kind regards,\\~\\
+    \noindent\textbf{\letterWriter}\\~\\
+    \small
+    \noindent\textit{\textcolor{gray}{Attached: \attached}}
+    \normalsize
+}
+
+% =================================================================================
+% LETTER TO THE EDITOR
+% =================================================================================
+
+% begin document
+\begin{document}
+
+% does everything till you have to actually start writing
+\MakeLteHead
+
+% looks better justified
+\justify Please find attached our research article titled `\paperTitle' to be considered for publication in \journal. We believe that this manuscript fits very well with the scope and aims of \journal\dots.
+
+\bigskip\noindent \lipsum[1]
+
+\bigskip\noindent \lipsum[2]
+
+\bigskip\noindent \lipsum[3]
+
+\bigskip\noindent This work has not been published previously and is not under consideration for publication elsewhere.
+
+\bigskip\noindent Thank you for your consideration.
+
+% Does the tail end of a letter (from X, enclosed is y)
+\MakeLteTail
+
+\newpage
+
+\end{document}
