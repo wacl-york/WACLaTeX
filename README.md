@@ -12,6 +12,8 @@ Currently in the repository:
 
 * `thesis` - A PhD/Masters thesis template, set up with a sensible structure and including everything required by the University of York as of December 2021.
 
+* `report_tap` - An example TAP report structure for PhD students.
+
 ## Using this Repo
 
 Try to bunch together related templates with an appropriate prefix (e.g., everything to do with publications beginning `pubs_`).

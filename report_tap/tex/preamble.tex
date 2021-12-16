@@ -1,0 +1,106 @@
+% =================================
+% PACKAGES ========================
+% =================================
+
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm, headheight = 15pt]{geometry}
+
+% Set-up commands
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage[autostyle]{csquotes}
+\usepackage{blindtext}
+
+% Better text
+\usepackage{ragged2e} %text alignment
+\usepackage{xcolor}   %colors
+\usepackage{enumitem} %better control over lists
+\usepackage{fancyhdr}
+
+% Better Tables
+\usepackage{tabularx} %alignments
+\usepackage{booktabs} %toprule, midrule, etc.
+\newcolumntype{L}{>{\RaggedRight}X} %new column (fixed width, left aligned)
+\newcolumntype{R}{>{\RaggedLeft}X} %new column (fixed width, right aligned)
+
+% Better Figures
+\usepackage{graphicx} %figures
+\usepackage{pdfpages} %insert whole pdf as a page
+
+% Better Commands
+\usepackage{xspace} %allow commands to detect punctuation
+\usepackage[version=4]{mhchem} %chemistry
+
+% Better Navigation
+\usepackage{hyperref} %clickable links
+\AtBeginDocument{\def\chapterautorefname{Chapter}} %Capitalise "chapter" in \autoref
+\AtBeginDocument{\def\sectionautorefname{Section}} %Capitalise "section" in \autoref
+\AtBeginDocument{\def\subsectionautorefname{Subsection}} %Capitalise "subsection" in \autoref
+
+% Better Captions
+\usepackage[font=small,labelfont=bf]{caption}
+
+% Better Code
+\usepackage{listings}           % For formatted code blocks
+
+% Only for template
+\usepackage{mwe}
+\usepackage{lipsum}
+
+% Set-up References
+\usepackage[
+  backend = biber, 
+  natbib = true,
+  style = numeric-comp,
+  sorting = none,
+  url = true,
+  isbn = false,
+  uniquename = false,
+  maxcitenames = 1,
+  maxbibnames = 99,
+  date = year,
+  giveninits = true
+]{biblatex}
+
+\DeclareNameAlias{author}{family-given}
+\renewbibmacro{in:}{}
+
+\addbibresource{bib/references.bib}
+\addbibresource{bib/ref2.bib}
+
+% Set-up Colours
+\definecolor{mygray}{gray}{0.7}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+
+\hypersetup{
+  colorlinks = true,
+  urlcolor = airforceblue, 
+  citecolor = airforceblue, 
+  linkcolor = airforceblue
+}
+
+% Formatting of code blocks
+\definecolor{green_comment}{rgb}{0,0.6,0}
+
+\lstset{
+  language = R,
+  basicstyle = \footnotesize,
+  commentstyle = \color{green_comment},
+  frame = single,
+  numbers = left
+}
+
+% =================================
+% COMMANDS ========================
+% =================================
+
+% chemistry
+\newcommand{\nox}{\ce{NO_{x}}\xspace}
+\newcommand{\notwo}{\ce{NO2}\xspace} 
+\newcommand{\cotwo}{\ce{CO2}\xspace}
+\newcommand{\ammonia}{\ce{NH3}\xspace}
+
+% units
+\newcommand{\gkg}{g~kg\textsuperscript{-1}\xspace}
+\newcommand{\gkm}{g~km\textsuperscript{-1}\xspace}
