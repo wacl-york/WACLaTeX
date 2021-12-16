@@ -1,0 +1,128 @@
+% =================================================================================
+% THESIS
+% Author: Stuart Grange (& Jack Davison)
+% A thesis template originally used by Stuart Grange, with some minor adaptations by
+% Jack Davison. "master" TeX file inputs individual chapters, which can be commented
+% in or out. Each chapter is set up to have its own bibliography.
+% =================================================================================
+
+% Load preamble
+\include{support/thesis_preamble}
+
+% Start document
+\begin{document}
+ 
+% Insert title page
+\begin{titlepage}
+    \newgeometry{
+        margin = 30mm,
+        top = 30mm,
+        bottom = 30mm,
+        right = 30mm
+        }
+    \begin{center}
+       \vspace*{1cm}
+
+       \huge \textbf{Incredible Atmospheric Science}%title
+
+       \vspace{2cm}
+
+       \Large \textbf{Your Name}%name
+
+       \vfill
+       \large
+       A thesis presented for the degree of\\
+       Doctor of Philosophy
+            
+       \vspace{0.8cm}
+     
+       \includegraphics[width=0.4\textwidth]{graphics/uoy_logo.png}
+       \normalsize
+       
+       Department of Chemistry\\
+       University of York\\
+       United Kingdom\\
+       \monthyeardate\today
+            
+   \end{center}
+\end{titlepage}
+
+\newpage
+
+% No headers for preamble
+\pagestyle{plain}
+
+\section{Abstract}
+
+% <= 300 words and one page
+
+\newpage
+
+% Will display down to \subsubsection
+\setcounter{tocdepth}{3}
+\tableofcontents
+
+\newpage
+
+% Add the list of figures to table of contents
+\addcontentsline{toc}{section}{\listfigurename}
+\listoffigures
+
+\newpage
+
+% Add the list of tables to table of contents
+\addcontentsline{toc}{section}{\listtablename}
+\listoftables
+
+\newpage
+
+% Start real text document
+
+% Not needed
+% \section{Preface}
+
+% An introduction to the thesis as a whole - not to be confused with Chapter 1.
+
+\section{Acknowledgements}
+
+\newpage
+
+\section{Author's declaration}
+
+\label{sec:declaration}
+
+I declare that this thesis is a presentation of original work and I am the sole author. This work has not previously been presented for an award at this, or any other, University. All sources are acknowledged as References. 
+
+\newpage
+
+% Preamble complete
+
+\pagenumbering{arabic}
+
+% Start numbered components from here
+\setcounter{secnumdepth}{4}
+
+% Start custom headers with no underline
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\rhead{\slshape\nouppercase{\leftmark}}
+\lhead[E,O]{}
+
+% Real text begins
+
+\chapter{Introduction}
+
+\label{chapter:introduction}
+
+% Compile self contained file
+\input{sections/introduction}
+
+\chapter{Another chapter}
+
+% Input file or text here
+
+\chapter{Yet another chapter}
+
+\chapter{Summary and conclusions}
+
+\end{document}

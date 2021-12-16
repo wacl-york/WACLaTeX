@@ -1,0 +1,116 @@
+% https://www.york.ac.uk/research/graduate-school/academic/thesis/format/
+% Should not be into the 300 pages...
+
+% Set document class
+\documentclass[a4paper, 12pt, oneside]{book}
+
+% Load packages and set the package options
+% For margins
+\usepackage[
+  margin = 40mm, 
+  headheight = 28pt,
+  bottom = 30mm,
+  right = 30mm
+]{geometry}
+
+% For images
+\usepackage{graphicx}
+
+% For hyperlinks
+\usepackage[hidelinks]{hyperref}
+
+% For extra pdf metadata
+\usepackage{hyperxmp}
+
+% For better tables
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+% For umlats
+\usepackage[utf8]{inputenc}
+
+% For non-italic Greek characters
+\usepackage{upgreek}
+
+% To insert pdf files
+\usepackage{pdfpages}
+
+% For header control
+\usepackage{fancyhdr}
+
+% For formatted code blocks
+\usepackage{listings}
+\usepackage{color}
+
+% Formatting of code blocks
+\definecolor{green_comment}{rgb}{0,0.6,0}
+
+\lstset{
+  language = R,
+  basicstyle = \footnotesize,
+  commentstyle = \color{green_comment},
+  frame = single,
+  numbers = left
+}
+
+% Default fonts
+\usepackage{kpfonts}
+\usepackage[T1]{fontenc}
+
+% Load references helpers, using biblatex here
+\input{support/thesis_reference_helpers}
+
+% Define some new commands and functions
+\newcommand*\mycommand[1]{\texttt{\emph{#1}}}
+\newcommand{\notwo}{NO$_2${}}
+\newcommand{\nox}{NO$\rm_x${}}
+\newcommand{\ozone}{O$_3${}}
+\newcommand{\micrograms}{$\, \rm \upmu g \, m^{-3}$}
+\newcommand{\cotwo}{CO$_2${}}
+\newcommand{\sotwo}{SO$_2${}}
+\newcommand{\degree}{$\, ^{\circ}$}
+\newcommand{\pmten}{PM$_{10}${}}
+\newcommand{\pmtwofive}{PM$_{2.5}${}}
+\newcommand{\noy}{NO$\rm_y${}}
+\newcommand{\ammonia}{NH$\rm_3${}}
+
+% For the names of the list of figures and tables
+\renewcommand{\listfigurename}{List of figures}
+\renewcommand{\listtablename}{List of tables}
+
+% Use symbols for footnotes, numbers are confusing due to citations
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+
+% For an extra level, starting to get very nested here though
+\newcommand{\subsubsubsection}[1]{\paragraph{#1} \makebox[0pt] \\}
+
+% Do not display numbers on first level in table of contents
+\setcounter{secnumdepth}{0}
+
+% Line spacing
+\linespread{1.5}
+
+% A custom environment for hanging intents and no no item labels
+\newenvironment{biblist}{
+	\begin{list}{}
+		{
+			\setlength{\labelwidth}{0pt}
+			\setlength{\labelsep}{1em}
+			\setlength{\leftmargin}{2em}
+			\setlength{\itemindent}{-1em}
+		}
+	}{\end{list}
+}
+
+% Capitalise "Chapter" in autoref
+\AtBeginDocument{\def\chapterautorefname{Chapter}}%
+\AtBeginDocument{\def\sectionautorefname{Section}}%
+
+% format datetime on front cover
+\usepackage{datetime}
+\newdateformat{monthyeardate}{%
+  \monthname[\THEMONTH], \THEYEAR}
+
+% new column types for tidy tables
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}

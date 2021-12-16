@@ -1,0 +1,69 @@
+% Set up biblatex
+\usepackage[
+  backend = biber, 
+  natbib = true,
+  style = numeric-comp,
+  sorting = none,
+  url = true,
+  isbn = false,
+  uniquename = false,
+  maxcitenames = 2,
+  maxbibnames = 99,
+  date = year,
+  giveninits = true
+]{biblatex}
+
+% No quotes for titles
+\DeclareFieldFormat[
+  article, 
+  inbook, 
+  incollection, 
+  inproceedings, 
+  patent, 
+  thesis, 
+  unpublished,
+  manual
+]{title}{{#1\isdot}}
+
+% Last names first in reference list
+\DeclareNameAlias{author}{family-given}
+
+% No ``in:''
+\renewbibmacro{in:}{}
+
+% General command
+\addbibresource{bib/thesis_references_example.bib}
+
+% For Wikipedia like superscripts with compressed citations, use with numeric-comp style
+% Use \supercite
+\DeclareCiteCommand{\supercite}[\mkbibsuperscript]
+{\usebibmacro{cite:init}%
+  \let\multicitedelim=\supercitedelim
+  \iffieldundef{prenote}
+  {}
+  {\BibliographyWarning{Ignoring prenote argument}}%
+  \iffieldundef{postnote}
+  {}
+  {\BibliographyWarning{Ignoring postnote argument}}%
+  \bibopenbracket}%
+{\usebibmacro{citeindex}%
+  \usebibmacro{cite:comp}}
+{}
+{\usebibmacro{cite:dump}\bibclosebracket}
+
+
+% For fullcite
+% All authors shown
+\preto\fullcite{\AtNextCite{\defcounter{maxnames}{99}}}
+
+% Change name of sections, only needed for book class I think
+\renewcommand\bibname{References}
+
+% Make biblography font size a bit smaller
+\renewcommand*{\bibfont}{\small}
+
+% To help when long urls need to be split across lines, not perfect though
+\usepackage{url}
+
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
