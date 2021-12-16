@@ -16,10 +16,16 @@ Currently in the repository:
 
 ## Using this Repo
 
-Try to bunch together related templates with an appropriate prefix (e.g., everything to do with publications beginning `pubs_`).
+* If you have a nice LaTeX template, please contribute it! There's no reason every single person needs to write their own thesis/TAP report/letter/etc. template.
 
-If you aren't a GitHub user (you should consider it!) you can click the green "code" button and then "download ZIP" to download the templates to your computer.
+* If you have a different version of something that's already here (a differently formatted thesis, for example) please still contribute - choice is no bad thing.
 
-The [Overleaf](https://www.overleaf.com/) platform is an excellent resource to start using and collaborating with LaTeX.
+* Try to bunch together related templates with an appropriate prefix (e.g., everything to do with publications beginning `pubs_`).
 
-If you are a new LaTeX user, please do ask for help. There are plenty of people in WACL with enough experience to get you started.
+* If you aren't a GitHub user (you should consider it!) you can click the green "code" button and then "download ZIP" to download the templates to your computer.
+
+## New LaTeX Users
+
+* The [Overleaf](https://www.overleaf.com/) platform is an excellent resource to start using and collaborating with LaTeX.
+
+* If you are a new LaTeX user, please do ask for help. There are plenty of people in WACL with enough experience to get you started.
