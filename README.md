@@ -16,9 +16,9 @@ Currently in the repository:
 
 ## Using this Repo
 
-* If you have a nice LaTeX template, please contribute it! There's no reason every single person needs to write their own thesis/TAP report/letter/etc. template.
+* If you have a nice LaTeX template, please contribute it! There's no reason every single person _needs_ to write their own thesis/TAP report/letter/etc. template.
 
-* If you have a different version of something that's already here (a differently formatted thesis, for example) please still contribute - choice is no bad thing.
+* Saying that, if you have a different version of something that's already here (a differently formatted thesis, for example) please still contribute - choice is no bad thing!
 
 * Try to bunch together related templates with an appropriate prefix (e.g., everything to do with publications beginning `pubs_`).
 
