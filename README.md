@@ -28,4 +28,6 @@ Currently in the repository:
 
 * The [Overleaf](https://www.overleaf.com/) platform is an excellent resource to start using and collaborating with LaTeX.
 
+* The [Overleaf "learn" pages](https://www.overleaf.com/learn) are also a great resource to start learning LaTeX independently.
+
 * If you are a new LaTeX user, please do ask for help. There are plenty of people in WACL with enough experience to get you started.
