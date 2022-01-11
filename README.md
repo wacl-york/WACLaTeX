@@ -15,6 +15,7 @@ Currently in the repository:
 * `report_tap` - An example TAP report structure for PhD students.
 
 * `beamer_presentation` - An example presentation produced using the "beamer" package.
+* `beamer_rmarkdown` - An example presentation written in RMarkdown.
 
 ## Using this Repo
 
