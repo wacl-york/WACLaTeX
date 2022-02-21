@@ -10,13 +10,12 @@
 \usepackage{lmodern}
 \usepackage[english]{babel}
 \usepackage[autostyle]{csquotes}
-\usepackage{blindtext}
 
 % Better text
 \usepackage{ragged2e} %text alignment
 \usepackage{xcolor}   %colors
 \usepackage{enumitem} %better control over lists
-\usepackage{fancyhdr}
+\usepackage{fancyhdr} %nice headers at tops of pages
 
 % Better Tables
 \usepackage{tabularx} %alignments
@@ -39,7 +38,7 @@
 \AtBeginDocument{\def\subsectionautorefname{Subsection}} %Capitalise "subsection" in \autoref
 
 % Better Captions
-\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[font=small,labelfont=bf]{caption} % make caption labels bold and a bit smaller
 
 % Better Code
 \usepackage{listings}           % For formatted code blocks
@@ -47,6 +46,7 @@
 % Only for template
 \usepackage{mwe}
 \usepackage{lipsum}
+\usepackage{blindtext}
 
 % Set-up References
 \usepackage[
@@ -61,13 +61,12 @@
   maxbibnames = 99,
   date = year,
   giveninits = true
-]{biblatex}
+]{biblatex} % nice defaults
 
 \DeclareNameAlias{author}{family-given}
 \renewbibmacro{in:}{}
 
-\addbibresource{bib/references.bib}
-\addbibresource{bib/ref2.bib}
+\addbibresource{ref.bib} % add your own bib resources if needed!
 
 % Set-up Colours
 \definecolor{mygray}{gray}{0.7}
