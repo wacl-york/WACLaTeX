@@ -4,8 +4,6 @@
 
 Currently in the repository:
 
-* `demo` - A demo document that serves as an introduction to preparing a basic report in LaTeX.
-
 * `thesis` - A PhD/Masters thesis template, set up with a sensible structure and including everything required by the University of York as of December 2021.
 
 * `report_tap` - An example TAP report structure for PhD students.
@@ -21,6 +19,13 @@ Currently in the repository:
     * `beamer_presentation` - An example presentation produced using the "beamer" package.
     
     * `beamer_rmarkdown` - An example presentation written in RMarkdown.
+
+* Demonstration documents:
+
+    * `demo` - A demo document that serves as an introduction to preparing a basic report in LaTeX.
+    
+    * `demo_tables` - A demo document showing the evolution of a table in LaTeX, including the use of the "booktabs" and "tabularx" packages.
+
 
 ## Using this Repo
 

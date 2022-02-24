@@ -1,0 +1,219 @@
+
+% Preamble =======
+
+\documentclass{article}
+\usepackage[utf8]{inputenc} % language
+\usepackage{microtype} % nicer typesetting
+\usepackage[authoryear]{natbib} % bibliography
+\usepackage[hidelinks]{hyperref} % hyperlinks
+\usepackage{doi} % clickable DOIs
+
+\bibliographystyle{plainnat}
+
+\title{Better \LaTeX~Tables}
+\author{Jack Davison}
+\date{February 2022}
+
+% TABLE PACKAGES
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+% new column types for tidy tables (from tabularx)
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+
+% Begin Document =======
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Premise}
+
+Tables can often be an afterthought; figures and graphics can steal the show with bright colours and appealing geometries, leaving tables to be relegated to displaying ugly or reference data that either can't or shouldn't be visualised. This is no reason to not put some extra effort in, however!
+
+This document is a \LaTeX focused implementation of the guidance found in \citet{schwabish_2020}. If you are looking to really celebrate tables as a medium for sharing data, I'd recommend reading that short paper to find out more! The abstract reads:
+
+\begin{quote}
+\textit{``Tables are a unique form of visualizing data because, unlike many charts, they are not usually intended to give a quick, visual representation of data. Instead, tables are useful when you want to show the exact values of your data or estimates. They are not the best solution if you want to show a lot of data or if you want to show the data in a compact space, but a well-designed table can help your reader find specific numbers and discover patterns and outliers.''
+}\end{quote}
+
+\bibliography{tabbib}
+
+\newpage
+\section{Improving a Table with \texttt{booktabs}}
+
+Let's start with this table, created using Fischer's \textit{Iris} dataset. It shows the mean values for the four measured dimensions of three species of iris flower petals and sepals, also arbitrarily split into two groups (A and B). Each cell is clearly highlighted, with vertical and horizontal lines between each.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|l|l|l|l|l|}
+  \hline
+  & Species & Sepal.Length & Sepal.Width & Petal.Length & Petal.Width \\ 
+  \hline
+  A & \emph{setosa} & 5.02 & 3.48 & 1.46 & 0.23 \\ \hline
+  A & \emph{versicolor} & 5.99 & 2.78 & 4.31 & 1.35 \\ \hline
+  A & \emph{virginica} & 6.50 & 2.94 & 5.56 & 2.08 \\ \hline
+  B & \emph{setosa} & 4.99 & 3.38 & 1.47 & 0.26 \\ \hline
+  B & \emph{versicolor} & 5.88 & 2.76 & 4.21 & 1.30 \\ \hline
+  B & \emph{virginica} & 6.67 & 3.01 & 5.54 & 1.98 \\
+   \hline
+\end{tabular}
+\end{table}
+
+The first improvement can come with the implementation of a simple rule; vertical lines are almost always ugly, and horizontal lines should be used sparingly. The best tables often only have three lines; one at the top, one at the bottom, and one below the column headers.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{llllll}
+  \hline
+  & Species & Sepal.Length & Sepal.Width & Petal.Length & Petal.Width \\ 
+  \hline
+  A & \emph{setosa} & 5.02 & 3.48 & 1.46 & 0.23 \\ 
+  A & \emph{versicolor} & 5.99 & 2.78 & 4.31 & 1.35 \\ 
+  A & \emph{virginica} & 6.50 & 2.94 & 5.56 & 2.08 \\ 
+  B & \emph{setosa} & 4.99 & 3.38 & 1.47 & 0.26 \\ 
+  B & \emph{versicolor} & 5.88 & 2.76 & 4.21 & 1.30 \\ 
+  B & \emph{virginica} & 6.67 & 3.01 & 5.54 & 1.98 \\
+   \hline
+\end{tabular}
+\end{table}
+
+To enhance the appearance of this table even further we should use the \texttt{booktabs} package. This adds a small number of ``rule'' commands that more nicely format tables. There is one for the top, for the middle, and for the bottom. There is also a fourth that we will use shortly! Simply replace each instance of ``hline'' with the equivalent ``rule''.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{llllll}
+  \toprule
+  & Species & Sepal.Length & Sepal.Width & Petal.Length & Petal.Width \\ 
+  \midrule
+  A & \emph{setosa} & 5.02 & 3.48 & 1.46 & 0.23 \\ 
+  A & \emph{versicolor} & 5.99 & 2.78 & 4.31 & 1.35 \\ 
+  A & \emph{virginica} & 6.50 & 2.94 & 5.56 & 2.08 \\ 
+  B & \emph{setosa} & 4.99 & 3.38 & 1.47 & 0.26 \\ 
+  B & \emph{versicolor} & 5.88 & 2.76 & 4.21 & 1.30 \\ 
+  B & \emph{virginica} & 6.67 & 3.01 & 5.54 & 1.98 \\
+   \bottomrule
+\end{tabular}
+\end{table}
+
+Another common rule for making tables look nicer is consistent column alignment. A good rule of thumb is for character columns to be \textbf{left} aligned, numeric columns to be \textbf{right} aligned, and very few columns to be \textbf{centred} unless they happen to be very narrow (e.g., glyphs). Let's apply these principles to our table.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{clrrrr}
+  \toprule
+  & Species & Sepal.Length & Sepal.Width & Petal.Length & Petal.Width \\ 
+  \midrule
+  A & \emph{setosa} & 5.02 & 3.48 & 1.46 & 0.23 \\ 
+  A & \emph{versicolor} & 5.99 & 2.78 & 4.31 & 1.35 \\ 
+  A & \emph{virginica} & 6.50 & 2.94 & 5.56 & 2.08 \\ 
+  B & \emph{setosa} & 4.99 & 3.38 & 1.47 & 0.26 \\ 
+  B & \emph{versicolor} & 5.88 & 2.76 & 4.21 & 1.30 \\ 
+  B & \emph{virginica} & 6.67 & 3.01 & 5.54 & 1.98 \\
+   \bottomrule
+\end{tabular}
+\end{table}
+
+It is often a good idea to avoid repetition. In this case, the "group" column has a lot of repetition, and it is actually quite difficult to see where group A ends and where group B begins. This could be improved by removing the repeated labels and, optionally, adding a bit of space between them.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{clrrrr}
+  \toprule
+  & Species & Sepal.Length & Sepal.Width & Petal.Length & Petal.Width \\ 
+  \midrule
+  A & \emph{setosa} & 5.02 & 3.48 & 1.46 & 0.23 \\ 
+    & \emph{versicolor} & 5.99 & 2.78 & 4.31 & 1.35 \\ 
+    & \emph{virginica} & 6.50 & 2.94 & 5.56 & 2.08 \\ ~\\
+  B & \emph{setosa} & 4.99 & 3.38 & 1.47 & 0.26 \\ 
+    & \emph{versicolor} & 5.88 & 2.76 & 4.21 & 1.30 \\ 
+    & \emph{virginica} & 6.67 & 3.01 & 5.54 & 1.98 \\
+   \bottomrule
+\end{tabular}
+\end{table}
+
+If you compile this file in a LaTeX compiler you'll likely notice that these tables are giving hbox errors. Getting tables to fit nicely on documents is a more of an art than a science, but an obvious thing we could do is add spanning headers by adding another header row, and using the fourth `rule' command in \texttt{booktabs} - ``cmidrule''. This command draws horizontal lines across a table over only certain columns, and can be instructed to shave off the ends of these lines to allow for space between them.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{clrrrr}
+  \toprule
+        &           & \multicolumn{2}{r}{Sepal} & \multicolumn{2}{r}{Petal} \\
+        \cmidrule(l){3-4} \cmidrule(l){5-6}
+     & Species & Length & Width & Length & Width \\ 
+  \midrule
+  A & \emph{setosa} & 5.02 & 3.48 & 1.46 & 0.23 \\ 
+    & \emph{versicolor} & 5.99 & 2.78 & 4.31 & 1.35 \\ 
+    & \emph{virginica} & 6.50 & 2.94 & 5.56 & 2.08 \\ ~\\
+  B & \emph{setosa} & 4.99 & 3.38 & 1.47 & 0.26 \\ 
+    & \emph{versicolor} & 5.88 & 2.76 & 4.21 & 1.30 \\ 
+    & \emph{virginica} & 6.67 & 3.01 & 5.54 & 1.98 \\
+   \bottomrule
+\end{tabular}
+\end{table}
+
+\section{Controlling a Table with \texttt{tabularx}}
+
+Consider this small table with very long strings. This is an exaggerated example of a situation that we've likely come across; our table has some kind of long character in it (e.g., a site name) and it runs our table off the side of the page! 
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|c}
+    \toprule
+        Feeling & Annoyance \\
+    \midrule
+        This very long piece of text is driving me up the wall! I can't believe that its running off the side of the page - grrr! & 100\% \\~\\
+        This is a smaller bit of text. It brings me calm. & 10\% \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+\texttt{tabularx} is another table package that allows for wrapping. 
+
+\begin{table}[h!]
+    \centering
+    \begin{tabularx}{\linewidth}{Xr}
+    \toprule
+        Feeling & Annoyance \\
+    \midrule
+        This very long piece of text is driving me up the wall! I can't believe that its running off the side of the page - grrr! & 100\% \\~\\
+        This is a smaller bit of text. It brings me calm. & 0\% \\
+    \bottomrule
+    \end{tabularx}
+\end{table}
+
+\texttt{tabularx} is not only useful for wrapping long character columns, it is also useful for consistently spaced numeric ones! Any column assigned the letter ``X'' (or any derivative) will be of equal width, which allows for layouts like in the table below where all of the numeric columns are of equal width even though their headers are not! Note that the first was a standard \texttt{tabular} table whereas the second uses \texttt{tabularx}.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lrrr}
+    \toprule
+        Site & BIGHEADER & HEADER & HDR. \\
+    \midrule
+        York, North Yorkshire & 10 & 20 & 30 \\
+        Leeds, West Yorkshire & 20 & 30 & 10 \\
+        Sheffield, South Yorkshire & 30 & 10 & 20 \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabularx}{\linewidth}{lRRR}
+    \toprule
+        Site & BIGHEADER & HEADER & HDR. \\
+    \midrule
+        York, North Yorkshire & 10 & 20 & 30 \\
+        Leeds, West Yorkshire & 20 & 30 & 10 \\
+        Sheffield, South Yorkshire & 30 & 10 & 20 \\
+    \bottomrule
+    \end{tabularx}
+\end{table}
+
+\end{document}
+
