@@ -112,22 +112,38 @@ I declare that this thesis is a presentation of original work and I am the sole 
 
 % Real text begins
 
-\chapter{Introduction}
-
-\label{chapter:introduction}
-
-% Compile self contained file
+\chapter{Introduction} \label{chapter:introduction}
 \input{introduction}
 
-\chapter{Another chapter}
-
-% Input file or text here
+\chapter{Another chapter} \label{chapter:another-chapter}
 
 \chapter{Yet another chapter}
 
 \chapter{Summary and conclusions}
 
-\chapter{References}
+% Appendices - delete as appropriate
+\begin{appendix}
+
+    \addcontentsline{toc}{chapter}{Appendices}
+    \makeatletter
+    \addtocontents{toc}{\bgroup\let\protect\l@chapter\protect\l@section}
+    \makeatother
+    
+    \chapter{My first appendix}
+    \input{appendix1}
+    
+    \chapter{Appendix 2}
+    
+    \chapter{Appendix 3}
+
+    \addtocontents{toc}{\egroup}
+
+\end{appendix}
+
+% Bibliography
+\addcontentsline{toc}{chapter}{Bibliography}
+
+\chapter*{Bibliography}
 \printbibliography[heading = none]
 
 \end{document}
